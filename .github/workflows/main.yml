@@ -1,0 +1,22 @@
+name: remote ssh command
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  run_pull:
+    name: run pull
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.5.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Connect to server and execute commands
+      run: |
+        ssh -o StrictHostKeyChecking=no user@your_server_ip 'cd survivor && git pull && docker-compose down && docker-compose up -d'

@@ -1,0 +1,29 @@
+version: "3"
+services:
+  app:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ".env:/var/www/.env"
+    ports:
+      - 8080:80
+
+  mysql:
+    restart: always
+    image: mysql:8.0.34
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: laravel
+      DB_PASSWORD: laravel
+
+volumes:
+  mysql:
+    driver: "local"

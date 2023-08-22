@@ -13,5 +13,5 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          whoami
-          ls -al
+          cd app-for-devops
+          ls -la

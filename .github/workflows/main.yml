@@ -14,4 +14,4 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           cd app-for-devops
-          ls -la
+          git pull
